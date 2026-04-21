@@ -1,0 +1,21 @@
+.bx-wrapper .bx-viewport {
+    background: transparent;
+}
+
+.bx-wrapper .bx-viewport, .post {
+    color: #fff;
+}
+
+.bx-wrapper .post {
+    padding: 20px 10px;
+    background: rgba(255,255,255,0.1);
+}
+
+
+.navbar {
+    z-index: 99;
+}
+
+.modal-backdrop {
+    z-index: 998;
+}

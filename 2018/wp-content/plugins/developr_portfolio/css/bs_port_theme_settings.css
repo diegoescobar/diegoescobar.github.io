@@ -1,0 +1,76 @@
+/*messages*/
+.error {color:#cc0000;}
+
+
+.page-numbers {
+    border-radius: 4px;
+    display: inline-block;
+    margin: 20px 0;
+    padding-left: 0;
+}
+.page-numbers > li {
+    display: inline;
+}
+.page-numbers > li > a, .page-numbers > li > span {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    float: left;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+}
+.page-numbers > li:first-child > a, .page-numbers > li:first-child > span {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    margin-left: 0;
+}
+.page-numbers > li:last-child > a, .page-numbers > li:last-child > span {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.page-numbers > li > a:hover, .page-numbers > li > span:hover, .page-numbers > li > a:focus, .page-numbers > li > span:focus {
+    background-color: #eeeeee;
+}
+.page-numbers > .active > a, .page-numbers > .active > span, .page-numbers > .active > a:hover, .page-numbers > .active > span:hover, .page-numbers > .active > a:focus, .page-numbers > .active > span:focus {
+    background-color: #428bca;
+    border-color: #428bca;
+    color: #ffffff;
+    cursor: default;
+    z-index: 2;
+}
+.page-numbers > .disabled > span, .page-numbers > .disabled > a, .page-numbers > .disabled > a:hover, .page-numbers > .disabled > a:focus {
+    background-color: #ffffff;
+    border-color: #dddddd;
+    color: #999999;
+    cursor: not-allowed;
+}
+.page-numbers-lg > li > a, .page-numbers-lg > li > span {
+    font-size: 18px;
+    padding: 10px 16px;
+}
+.page-numbers-lg > li:first-child > a, .page-numbers-lg > li:first-child > span {
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+}
+.page-numbers-lg > li:last-child > a, .page-numbers-lg > li:last-child > span {
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.page-numbers-sm > li > a, .page-numbers-sm > li > span {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+.page-numbers-sm > li:first-child > a, .page-numbers-sm > li:first-child > span {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+}
+.page-numbers-sm > li:last-child > a, .page-numbers-sm > li:last-child > span {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+div#portfolioModal{
+	color:#666 !important;
+}
