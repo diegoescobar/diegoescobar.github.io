@@ -172,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
       const response = await fetch('http://nufire.ca/contact/submit-contact-form.php', {
         method: 'POST',
+		mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },
