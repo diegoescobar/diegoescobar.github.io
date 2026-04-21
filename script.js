@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Send data to server
     try {
-      const response = await fetch('/contact/submit-contact-form.php', {
+      const response = await fetch('http://nufire.ca/contact/submit-contact-form.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
