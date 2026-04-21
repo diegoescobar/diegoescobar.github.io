@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	const phone = formData.get('phone');
     const subject = formData.get('subject');
     const message = formData.get('message');
+	const time = formData.get('time');
     
     // Simple validation
     if (!name || !email || !message) {
@@ -164,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-  let contactData = prepareData( name, email, phone, subject, message);
+  let contactData = prepareData( name, email, phone, time, subject, message);
 
 	if ( contactData ){
   
@@ -182,6 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
           email: email,
 		  phone: phone,
           subject: subject,
+		  timestamp: time,
           message: message
         })
       });
