@@ -25,6 +25,7 @@ section p {
 	line-height: 22px;
 	font-size: 16px;
 	display: block;
+	text-align: justify;
 	font-family: 'Inter', sans-serif;
 	/* height: 261px; */
 	margin: 0px;
