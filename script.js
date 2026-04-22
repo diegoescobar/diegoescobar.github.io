@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Simple validation
     if (!name || !email || !message) {
       alert('Please fill in all required fields.');
-      return flase;
+      return false;
     }
   
     // Get browser data
