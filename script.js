@@ -145,11 +145,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		const message = formData.get('message');
 		const time = formData.get('time');
 
-		// Simple validation
-		if (!name || !email || !message) {
-			alert('Please fill in all required fields.');
-			return;
-		}
+		// // Simple validation
+		// if (!name || !email || !message) {
+		// 	alert('Please fill in all required fields.');
+		// 	return;
+		// }
 
 		// Email validation
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
