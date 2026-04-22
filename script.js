@@ -168,10 +168,11 @@ document.addEventListener('DOMContentLoaded', function() {
   let contactData = prepareData( name, email, phone, time, subject, message);
 
 	if ( contactData ){
-  
+		const host = 'https://nufire.ca';
+		const action = 'contact'
     // Send data to server
     try {
-      const response = await fetch('https://nufire.ca/contact/submit-contact-form.php', {
+      const response = await fetch(host+'/'+action+'/submit-contact-form.php', {
         method: 'POST',
 		mode: 'cors',
         headers: {
