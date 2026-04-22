@@ -85,6 +85,14 @@ function getDeviceType() {
 	}
 	return 'desktop';
 }
+// Function to set a timestamp on a field
+function setTimestamp() {
+	if (!timestampSet) {
+		const now = new Date();
+		timestampField.value = now.toISOString(); // e.g. 2026-04-20T16:30:00.000Z
+		timestampSet = true;
+	}
+}
 
 // Function to get screen resolution
 function getScreenResolution() {
