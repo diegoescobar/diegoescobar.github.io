@@ -30,7 +30,7 @@
 
 	<header>
 		<h1>Diego Escobar</h1>
-		<h6>Full-Stack Developer • Creative Systems Builder</h6>
+		<h5>Full-Stack Developer • Creative Systems Builder</h5>
 
 		<!-- Social Media Links -->
 		<nav class="nav">
@@ -68,13 +68,16 @@
 				<a class="brand" href="http://diegoescobar.ca/" target="_blank" aria-label="RSS">
 					<span class="iconify-inline" data-icon="ri:rss-fill">RSS Feed</span>
 				</a>
+				<a class="brand" href="https://www.linkedin.com/in/diego-escobar-ca/" target="_blank" aria-label="LinkedIn">
+					<span class="iconify-inline" data-icon="ri:linkedin-fill"></span>
+				</a>
 			</div>
 		</nav>
 	</header>
 
 	<div class="container">
 		<div class="row">
-			<section id="services" class="col-sm-12 col-md-6 col-lg-6">
+			<section id="services-section" class="col-sm-12 col-md-6 col-lg-6">
 				<h2>About</h2>
 				<div class="grid">
 					<div class="card">
@@ -94,9 +97,8 @@
 					<div class="card hide" hidden></div>
 				</div>
 			</section>
-
-			<div class="col-sm-12 col-md-6 col-lg-6">
-				<section id="contact" class="hk-contact-wrap">
+			<section id="contact" class="col-sm-12 col-md-6 col-lg-6">
+				<div id="contact-section" class="hk-contact-wrap">
 					<div class="hk-contact-card">
 
 						<div class="hk-contact-head">
@@ -133,15 +135,16 @@
 								<textarea id="message" name="message" rows="4" required></textarea>
 								<label for="message">Your Message</label>
 							</div>
-
+							<div id="errors_holder" class"errors hidden hide">
+							</div>
 							<button type="submit" class="hk-submit-btn">
 								Send Message
 							</button>
 						</form>
 
-					</div>
-				</section>
-			</div>
+					</div>		
+				</div>
+			</section>
 		</div>	
 		<section class="col-12 col-md-10 col-lg-8">
 			<ul id="portfolio-cloud" class="grid">

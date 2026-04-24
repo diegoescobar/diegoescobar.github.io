@@ -1,3 +1,7 @@
+console.count('SCRIPT LOADED');
+
+const localDev = false;
+
 // Function to get browser information
 function getBrowserInfo() {
 	const userAgent = navigator.userAgent;
@@ -85,8 +89,9 @@ function getDeviceType() {
 	}
 	return 'desktop';
 }
+
 // Function to set a timestamp on a field
-function setTimestamp() {
+function setTimestamp( timestampSet ) {
 	if (!timestampSet) {
 		const now = new Date();
 		timestampField.value = now.toISOString(); // e.g. 2026-04-20T16:30:00.000Z
@@ -122,12 +127,39 @@ function getReferrerURL() {
 }
 
 
+function error_alert(error) {
+    const errors_div = document.getElementById('errors_holder');
+    if (!errors_div) return;
+
+    errors_div.classList.remove('hidden', 'hide');
+
+	// console.log(errors_div); // check this
+	// console.log(errors_div.className);
+	errors_div.style.display = 'block';
+    
+
+    const wrapper = document.createElement('div');
+    const span = document.createElement('span');
+    span.textContent = error;
+
+    wrapper.appendChild(span);
+    errors_div.appendChild(wrapper);
+}
+
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
 	const contactForm = document.getElementById('contactForm');
+	let errors = false;
+	const errors_div = document.getElementById('errors_holder');
 
 	// Handle form submission
 	contactForm.addEventListener('submit', async function (e) {
 		e.preventDefault();
+		errors_div.innerHTML = '';
+		errors = false;
+		console.count('SUBMIT HANDLER FIRED');
 
 		// Get form data
 		const formData = new FormData(contactForm);
@@ -155,27 +187,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		// // Simple validation
 		// if (!name || !email || !message) {
-		// 	alert('Please fill in all required fields.');
+		// 	error_alert('Please fill in all required fields.');
 		// 	return;
 		// }
 
 		// Email validation
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if (!emailRegex.test(email)) {
-			alert('Please enter a valid email address.');
-			return;
+			error_alert('Please enter a valid email address.');
+			errors = true;
 		}
 
 		// phone validation
 		const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 		if (!phoneRegex.test(phone)) {
-			alert('Please enter a valid Phone Number.');
-			return;
+			error_alert('Please enter a valid Phone Number.');
+			errors = true;
 		}
 
 		let contactData = prepareData(name, email, phone, time, subject, message);
 
-		if (contactData) {
+
+
+		if (errors_div.innerHTML == '' || errors == true){ return false; }
+
+		if (localDev == true) {
+			// error_alert('Message sent successfully! We will contact you soon.');
+			//console.log(response)
+			contactForm.reset();
+			contactForm.innerHTML = '<div><h4>Message sent successfully! We will contact you soon.</h4></div>';
+			return true;
+		}
+
+		
+
+		if (contactData && localDev == false) {
 			const host = 'https://nufire.ca';
 			const action = 'contact'
 			// Send data to server
@@ -200,27 +246,28 @@ document.addEventListener('DOMContentLoaded', function () {
 				const data = await response.json(); // 👈 THIS is key
 
 				if (response.ok) {
-					alert('Message sent successfully! We will contact you soon.');
+					error_alert('Message sent successfully! We will contact you soon.');
 					//console.log(response)
 					contactForm.reset();
+					contactForm.innerHTML = '<div><h4>Message sent successfully! We will contact you soon.</h4></div>';
 					return true;
 				} else {
 					// console.log(data);            // see full response
-					console.log(data.errors);      // if your PHP sends { error: "..." }
+					// console.log(data.errors);      // if your PHP sends { error: "..." }
 					throw new Error(data.errors.message || 'Failed to send message');
 				}
 			} catch (error) {
-				console.error('Error submitting form:', error);
-				console.log(error);
-				alert('There was an error sending your message. ' + error + '. Please try again.');
+				// console.error('Error submitting form:', error);
+				// console.log(error);
+				error_alert('There was an error sending your message. ' + error + '. Please try again.');
 				return false;
 			}
 
-			// alert('Message sent successfully! We will contact you soon.');
+			// error_alert('Message sent successfully! We will contact you soon.');
 			// Reset form
 			// contactForm.reset();
 		} else {
-			alert('Message failed successfully! Please Try Again.');
+			error_alert('Message failed successfully! Please Try Again.');
 		}
 
 		// In a real application, you would send the data to your server here
@@ -232,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		// Simple validation
 		// if (!name || !email || !message) {
-		// 	alert('Please fill in all required fields.');
+		// 	error_alert('Please fill in all required fields.');
 		// 	return false;
 		// }
 
