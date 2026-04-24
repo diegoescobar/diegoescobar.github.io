@@ -1,5 +1,3 @@
-console.count('SCRIPT LOADED');
-
 const localDev = false;
 
 // Function to get browser information
@@ -132,9 +130,6 @@ function error_alert(error) {
     if (!errors_div) return;
 
     errors_div.classList.remove('hidden', 'hide');
-
-	// console.log(errors_div); // check this
-	// console.log(errors_div.className);
 	errors_div.style.display = 'block';
     
 
@@ -159,7 +154,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		e.preventDefault();
 		errors_div.innerHTML = '';
 		errors = false;
-		console.count('SUBMIT HANDLER FIRED');
 
 		// Get form data
 		const formData = new FormData(contactForm);
