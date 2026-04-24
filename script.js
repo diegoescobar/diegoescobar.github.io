@@ -185,11 +185,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		const message = formData.get('message');
 		const time = formData.get('time');
 
-		// // Simple validation
-		// if (!name || !email || !message) {
-		// 	error_alert('Please fill in all required fields.');
-		// 	return;
-		// }
+		// Simple validation
+		if (!name || !email || !message) {
+			error_alert('Please fill in all required fields.');
+			return;
+		}
 
 		// Email validation
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -205,21 +205,9 @@ document.addEventListener('DOMContentLoaded', function () {
 			errors = true;
 		}
 
-		let contactData = prepareData(name, email, phone, time, subject, message);
-
-
+		let contactData = prepareData();
 
 		if (errors_div.innerHTML == '' || errors == true){ return false; }
-
-		if (localDev == true) {
-			// error_alert('Message sent successfully! We will contact you soon.');
-			//console.log(response)
-			contactForm.reset();
-			contactForm.innerHTML = '<div><h4>Message sent successfully! We will contact you soon.</h4></div>';
-			return true;
-		}
-
-		
 
 		if (contactData && localDev == false) {
 			const host = 'https://nufire.ca';
@@ -252,37 +240,25 @@ document.addEventListener('DOMContentLoaded', function () {
 					contactForm.innerHTML = '<div><h4>Message sent successfully! We will contact you soon.</h4></div>';
 					return true;
 				} else {
-					// console.log(data);            // see full response
-					// console.log(data.errors);      // if your PHP sends { error: "..." }
-					throw new Error(data.errors.message || 'Failed to send message');
+					// throw new Error(data.errors.message || 'Failed to send message');
+					error_alert('There was an error sending your message. Please try again.');
+				return false;
 				}
 			} catch (error) {
-				// console.error('Error submitting form:', error);
-				// console.log(error);
 				error_alert('There was an error sending your message. ' + error + '. Please try again.');
 				return false;
 			}
-
+		} else if (localDev == true) {
 			// error_alert('Message sent successfully! We will contact you soon.');
-			// Reset form
-			// contactForm.reset();
+			contactForm.reset();
+			contactForm.innerHTML = '<div><h4>Message sent successfully! We will contact you soon.</h4></div>';
+			return true;
 		} else {
-			error_alert('Message failed successfully! Please Try Again.');
+			error_alert('There was a strange error in your message.');
 		}
-
-		// In a real application, you would send the data to your server here
-		// For demonstration, we'll just show an alert
 	});
 
-	function prepareData(name, email, phone, time, subject, message) {
-		// console.log(name + email + phone + subject + message);
-
-		// Simple validation
-		// if (!name || !email || !message) {
-		// 	error_alert('Please fill in all required fields.');
-		// 	return false;
-		// }
-
+	function prepareData() {
 		// Get browser data
 		const browserInfo = getBrowserInfo();
 		const screenResolution = getScreenResolution();
@@ -302,11 +278,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			landing_page_url: landing_page_url,
 			session_id: session_id
 		};
-
-		// console.log( contactData );
-
 		return contactData;
-
 	}
 
 	// Input focus effects
