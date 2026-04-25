@@ -187,8 +187,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			return;
 		}
 
-
-
 		// Get values from form
 		const name = formData.get('name');
 		const email = formData.get('email');
@@ -197,10 +195,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		const message = formData.get('message');
 		const time = formData.get('time');
 
-		let dataTest = [name, email, phone, subject, message, time]
-
-
-		console.log(formData);
+		// let dataTest = [name, email, phone, subject, message, time]
+		// console.log(formData);
 
 		// Simple validation
 		if (!name || !email || !message) {
@@ -228,12 +224,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (errors) return false;
 
 		if (!localDev) {
-			console.log ('data okay')
+			
+			// console.log ('data okay')
+
 			const host = 'https://nufire.ca';
 			const action = 'contact'
 			// Send data to server
 			try {
-				const response = await fetch(host + '/' + action + '/submit-contact-form.php', {
+				const response = await fetch(host + '/' + action + '/', {
 					method: 'POST',
 					mode: 'cors',
 					headers: {
@@ -251,7 +249,6 @@ document.addEventListener('DOMContentLoaded', function () {
 				});
 
 				// const data = await response.json(); // 👈 THIS is key
-
 
 				let data = null;
 				try {
@@ -271,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				} else {
 					// throw new Error(data.errors.message || 'Failed to send message');
 					error_alert('There was an error sending your message. Please try again.');
-				return false;
+					return false;
 				}
 			} catch (error) {
 				error_alert('There was an error sending your message. ' + error + '. Please try again.');

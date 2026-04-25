@@ -417,3 +417,23 @@ footer {
 			rgba(0, 0, 0, 0.6) 30%,
 			rgba(0, 0, 0, 1) 60%);
 }
+
+.spinner {
+    display:inline-block;
+    width:16px;
+    height:16px;
+    margin-left:10px;
+    border:2px solid rgba(255,255,255,.4);
+    border-top-color:#fff;
+    border-radius:50%;
+    animation:spin .7s linear infinite;
+    vertical-align:middle;
+}
+
+.hidden, .hide {
+    display:none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
