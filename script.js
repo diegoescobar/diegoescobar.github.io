@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (errors_div.innerHTML !== '' || errors === true) { return false; }
 
 
-		if (contactData && localDev == false) {
+		if (contactData && !localDev) {
 			const host = 'https://nufire.ca';
 			const action = 'contact'
 			// Send data to server
