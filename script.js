@@ -160,7 +160,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	contactForm.addEventListener('submit', async function (e) {
 		e.preventDefault();
 
-		const formSubmitBtn = contactForm.getElementById('hk-submit');
+		//const formSubmitBtn = contactForm.getElementById('hk-submit');
+		
+		const formSubmitBtn = contactForm.querySelector('#hk-submit')
 		formSubmitBtn.disabled = true;
 
 		contactForm.querySelectorAll('input, textarea, button, select').forEach(el => {
