@@ -144,7 +144,7 @@ function error_alert(error) {
 	const contactForm = document.getElementById('contactForm');
 
 	contactForm.querySelectorAll('input, textarea, button, select').forEach(el => {
-    el.disabled = false;
+    el.readonly = false;
 });
 }
 
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		formSubmitBtn.disabled = true;
 
 		contactForm.querySelectorAll('input, textarea, button, select').forEach(el => {
-			el.disabled = true;
+			el.readonly = true;
 		});
 
 		errors_div.innerHTML = '';
@@ -188,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 
 
+
 		// Get values from form
 		const name = formData.get('name');
 		const email = formData.get('email');
@@ -195,6 +196,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		const subject = formData.get('subject');
 		const message = formData.get('message');
 		const time = formData.get('time');
+
+		let dataTest = [name, email, phone, subject, message, time]
+
+
+		console.log(formData);
 
 		// Simple validation
 		if (!name || !email || !message) {
