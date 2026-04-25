@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 
 		// Email validation
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 		if (!emailRegex.test(email)) {
 			error_alert('Please enter a valid email address.');
 			errors = true;
