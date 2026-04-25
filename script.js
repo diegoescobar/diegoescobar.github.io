@@ -132,8 +132,7 @@ function error_alert(error) {
     if (!errors_div) return;
 
     errors_div.classList.remove('hidden', 'hide');
-	errors_div.style.display = 'block';
-    
+	errors_div.style.display = 'block';    
 
     const wrapper = document.createElement('div');
     const span = document.createElement('span');
@@ -141,6 +140,12 @@ function error_alert(error) {
 
     wrapper.appendChild(span);
     errors_div.appendChild(wrapper);
+
+	const contactForm = document.getElementById('contactForm');
+
+	contactForm.querySelectorAll('input, textarea, button, select').forEach(el => {
+    el.disabled = false;
+});
 }
 
 
@@ -157,6 +162,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		const formSubmitBtn = contactForm.getElementById('hk-submit');
 		formSubmitBtn.disabled = true;
+
+		contactForm.querySelectorAll('input, textarea, button, select').forEach(el => {
+			el.disabled = true;
+		});
 
 		errors_div.innerHTML = '';
 		errors = false;
