@@ -253,6 +253,7 @@ li.portfolio-item {
 	/* -webkit-filter: sepia(.7); */
 	position: relative;
 	-webkit-transition: .8s;
+	width:300px;
 }
 
 li.portfolio-item img {
