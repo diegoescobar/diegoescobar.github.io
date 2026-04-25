@@ -1,6 +1,14 @@
 const localDev = false;
 let timestampSet = false;
 
+const action = decodeHex('636f6e74616374');
+const host = decodeHex('68747470733a2f2f6e75666972652e6361'); 
+
+function decodeHex(hexStr){
+	const hex = hexStr;
+ 	return decodeURIComponent(hex.replace(/\s+/g, '').replace(/[0-9a-f]{2}/g, '%$&'));
+}
+
 // Function to get browser information
 function getBrowserInfo() {
 	const userAgent = navigator.userAgent;
@@ -227,9 +235,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			
 			// console.log ('data okay')
 
-			const host = 'https://nufire.ca';
-			const action = 'contact'
-			// Send data to server
+			// const host = '68747470733a2f2f6e75666972652e6361'; //'https://nufire.ca';
+			// const action = '636F6E74616374'; //'contact'
+			
+			// // Send data to server
 			try {
 				const response = await fetch(host + '/' + action + '/', {
 					method: 'POST',
