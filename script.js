@@ -1,4 +1,5 @@
 const localDev = false;
+let timestampSet = false;
 
 // Function to get browser information
 function getBrowserInfo() {
@@ -25,10 +26,10 @@ function getBrowserInfo() {
 // Function to get browser name
 function getBrowserName(userAgent) {
 	if (userAgent.includes('Firefox')) return 'Firefox';
-	if (userAgent.includes('Edge')) return 'Edge';
+	if (userAgent.includes('Edg')) return 'Edge';
 	if (userAgent.includes('OPR') || userAgent.includes('Opera')) return 'Opera';
-	if (userAgent.includes('Chrome')) return 'Chrome';
-	if (userAgent.includes('Safari')) return 'Safari';
+	if (userAgent.includes('Chrome') && !userAgent.includes('Edg')) return 'Chrome';
+	if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) return 'Safari';
 	return 'Unknown';
 }
 
@@ -89,12 +90,13 @@ function getDeviceType() {
 }
 
 // Function to set a timestamp on a field
-function setTimestamp( timestampSet ) {
-	if (!timestampSet) {
-		const now = new Date();
-		timestampField.value = now.toISOString(); // e.g. 2026-04-20T16:30:00.000Z
-		timestampSet = true;
-	}
+function setTimestamp() {
+    if (!timestampSet) {
+        const now = new Date();
+        const field = document.getElementById('time');
+        if (field) field.value = now.toISOString();
+        timestampSet = true;
+    }
 }
 
 // Function to get screen resolution
@@ -186,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		// Simple validation
 		if (!name || !email || !message) {
 			error_alert('Please fill in all required fields.');
-			return;
+			errors = true;
 		}
 
 		// Email validation
@@ -198,16 +200,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		// phone validation
 		const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-		if (!phoneRegex.test(phone)) {
+		if (phone && !phoneRegex.test(phone)) {
 			error_alert('Please enter a valid Phone Number.');
 			errors = true;
 		}
 
 		let contactData = prepareData();
 
-		if (errors_div.innerHTML !== '' || errors === true) { return false; }
+		// if (errors_div.innerHTML !== '' || errors === true) { return false; }
+		if (errors) return false;
 
-		if (contactData && !localDev) {
+		if (!localDev) {
 			console.log ('data okay')
 			const host = 'https://nufire.ca';
 			const action = 'contact'
@@ -230,7 +233,17 @@ document.addEventListener('DOMContentLoaded', function () {
 					})
 				});
 
-				const data = await response.json(); // 👈 THIS is key
+				// const data = await response.json(); // 👈 THIS is key
+
+
+				let data = null;
+				try {
+					data = await response.json();
+				} catch (e) {
+					// ignore or log
+					error_alert('There was an error sending your message. ' + error + '. Please try again.');
+					return false;
+				}
 
 				if (response.ok) {
 					error_alert('Message sent successfully! We will contact you soon.');
