@@ -152,6 +152,10 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Handle form submission
 	contactForm.addEventListener('submit', async function (e) {
 		e.preventDefault();
+
+		const formSubmitBtn = contactForm.getElementById('hk-submit');
+		formSubmitBtn.disabled = true;
+
 		errors_div.innerHTML = '';
 		errors = false;
 
@@ -203,8 +207,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		if (errors_div.innerHTML !== '' || errors === true) { return false; }
 
-
 		if (contactData && !localDev) {
+			console.log ('data okay')
 			const host = 'https://nufire.ca';
 			const action = 'contact'
 			// Send data to server
