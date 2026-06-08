@@ -2,7 +2,7 @@ const localDev = false;
 let timestampSet = false;
 
 const action = decodeHex('636f6e74616374');
-const host = decodeHex('68747470733a2f2f6e75666972652e6361'); 
+const host = decodeHex('68747470733A2F2F636F6E746163742E6E75666972652E63612F'); 
 
 function decodeHex(hexStr){
 	const hex = hexStr;
