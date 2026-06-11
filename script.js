@@ -4,10 +4,18 @@ let timestampSet = false;
 const action = decodeHex('636f6e74616374');
 const host = decodeHex('68747470733A2F2F636F6E746163742E6E75666972652E63612F'); 
 
-function decodeHex(hexStr){
-	const hex = hexStr;
- 	return decodeURIComponent(hex.replace(/\s+/g, '').replace(/[0-9a-f]{2}/g, '%$&'));
+// function decodeHex(hexStr){
+// 	const hex = hexStr;
+//  	return decodeURIComponent(hex.replace(/\s+/g, '').replace(/[0-9a-f]{2}/g, '%$&'));
+// }
+
+function decodeHex(hex) {
+    return hex.match(/.{1,2}/g)
+        .map(byte => String.fromCharCode(parseInt(byte, 16)))
+        .join('');
 }
+
+
 
 // Function to get browser information
 function getBrowserInfo() {
